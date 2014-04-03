@@ -38,6 +38,7 @@ setup(
     url='https://github.com/dgouldin/python-shams',
     packages=packages,
     package_data={'': ['LICENSE']},
+    package_dir={'shams': 'shams'},
     include_package_data=True,
     install_requires=requires,
     license=license,

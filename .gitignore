@@ -1,4 +1,5 @@
 build/
+dist/
 shams.egg-info/
 *.pyc
 *.swp
