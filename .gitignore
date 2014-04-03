@@ -1,0 +1,6 @@
+build/
+shams.egg-info/
+*.pyc
+*.swp
+*.egg
+
