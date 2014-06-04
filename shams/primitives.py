@@ -71,21 +71,36 @@ def random_capital_words(min, max, *args, **kwargs):
 def number(min, max):
     return randint(min, max)
 
-
-def url():
-    scheme = choice(('http', 'https'))
+def domain():
     tld = choice(('com', 'org', 'net', 'edu', 'gov'))
     charset = (
         string.digits +
         string.lowercase +
         string.uppercase
     ).decode('utf-8')
-    netloc = '.'.join((
+    return '.'.join((
         random_words(1, 4, charset=charset).replace(' ', '.'),
         tld,
     ))
+
+def url():
+    scheme = choice(('http', 'https'))
+    charset = (
+        string.digits +
+        string.lowercase +
+        string.uppercase
+    ).decode('utf-8')
     path = random_words(1, 4, charset=charset).replace(' ', '/')
     query = urlencode(dict(words(
         num=2, charset=charset).split(' ') for i in range(randint(1, 4))))
     fragment = word(charset=charset)
-    return urlunsplit((scheme, netloc, path, query, fragment))
+    return urlunsplit((scheme, domain(), path, query, fragment))
+
+def email():
+    charset = (
+        string.digits +
+        string.lowercase +
+        string.uppercase
+    ).decode('utf-8')
+    prefix = random_words(1, 4, charset=charset).replace(' ', '+')
+    return '{0}@{1}'.format(prefix, domain())
